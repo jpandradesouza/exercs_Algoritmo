@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 12</title>
+</head>
+
+<body>
+
+    <input type="text" id="inpt_nome_produto" placeholder="Nome do produto">
+    <br>
+    <br>
+    <input type="text" id="inpt_preco_compra" placeholder="Preço de compra">
+    <br>
+    <br>
+    <button onclick="cadastrar()">Cadastrar</button>
+    <br>
+    <br>
+    <button onclick="relatar()">Relatório de estoque</button>
+    <br>
+    <br>
+    <div id="mensagem"></div>
+
+</body>
+
+</html>
+
+<script>
+
+    nomes = [];
+    precos = [];
+
+
+    function cadastrar() {
+
+        var nome_cadastrado = inpt_nome_produto.value;
+        var preco_cadastrado = Number(inpt_preco_compra.value);
+
+
+
+        if (nome_cadastrado == "" || preco_cadastrado == "") {
+            alert("Preencha todos os campos!")
+        }
+
+        else {
+
+            for (contador = 0; contador <= nomes.length; contador++) {
+                if (nome_cadastrado == nomes[contador]) {
+                    alert('Produto já cadastrado!')
+                }
+
+            }
+
+
+            nomes.push(nome_cadastrado);
+            precos.push(preco_cadastrado);
+
+            mensagem.innerHTML = "";
+
+
+        }
+
+    }
+
+
+
+    function relatar() {
+
+        var nome_produto_caro = nomes[0];
+        var preco_produto_caro = precos[0];
+        var nome_produto_barato = nomes[0];
+        var preco_produto_barato = precos[0];
+
+        var total = 0;
+
+
+
+        mensagem.innerHTML = "";
+
+
+        mensagem.innerHTML += `Total de produtos: ${nomes.length}<br>`
+
+        for (contador = 0; contador < nomes.length; contador++) {
+
+            
+             
+            if (preco_produto_barato > precos[contador]) {
+                
+                nome_produto_barato = nomes[contador];
+            }
+
+
+            if (preco_produto_caro < precos[contador]) {
+               
+                nome_produto_caro = nomes[contador];
+            }
+           
+
+
+
+            mensagem.innerHTML += `Produto ${contador + 1}: ${nomes[contador]}<br>
+            Preço de compra: R$${precos[contador]}. Vender por R$${precos[contador] * 1.25}.<br><br>`
+
+
+
+            total += precos[contador];
+
+        }
+
+        var media = (total * 1.25) / precos.length;
+
+
+        mensagem.innerHTML += `O nome do produto mais caro: ${nome_produto_caro}<br>
+
+                O nome do produto mais barato: ${nome_produto_barato}<br>
+
+                A soma dos preços de compra dos produtos: R$${total.toFixed(2)}<br>
+
+                A média de preço de venda dos produtos: R$${media.toFixed(2)}<br><br>`
+
+    }
+
+
+
+
+
+
+
+</script>

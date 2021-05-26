@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 13</title>
+</head>
+
+<body>
+    <input type="text" id="inpt_dia_deposito" placeholder="Dia do depósito:">
+    <br>
+    <br>
+    <input type="text" id="inpt_valor_depositado" placeholder="Valor depositado:">
+
+    <button onclick="guardar()">Guardar</button>
+    <br>
+    <br>
+    <input  type="text" id="inpt_intervalo_inicial" placeholder="Primeiro dia:">
+    <br>
+    <br>
+    <input type="text" id="inpt_intervalo_final" placeholder="Último dia:">
+    <br>
+    <br>
+    <button onclick="rever()">Rever Depósitos</button>
+    <div id="mensagem"></div>
+
+</body>
+
+</html>
+
+<script>
+
+    dias = [];
+    valores = [];
+
+
+    function guardar() {
+
+        var dia_cadastrado = Number(inpt_dia_deposito.value);
+        var valor_cadastrado = Number(inpt_valor_depositado.value);
+
+
+        if (dia_cadastrado == "" || valor_cadastrado == "") {
+            alert('Preencha todos os valores')
+        }
+
+        else {
+            dias.push(dia_cadastrado);
+            valores.push(valor_cadastrado);
+        }
+    }
+
+    function rever() {
+
+        var dia_inicial = inpt_intervalo_inicial.value;
+        var dia_final = inpt_intervalo_final.value;
+        var total = 0;
+
+        mensagem.innerHTML = "";
+
+
+        for (contador = 0; contador < dias.length; contador++) {
+
+            if (dias[contador] >= dia_inicial && dias[contador] <= dia_final) {
+
+                if ((contador % 2) == 0) {
+                    mensagem.innerHTML += `<span style="background-color: cyan;">Sequência de digitação = ${contador + 1}  dia = ${dias[contador]}   Valor depositado = R$ ${valores[contador]}</span><br>`
+                  
+                }
+                else {
+                    mensagem.innerHTML += `<span style="background-color: green;">Sequência de digitação = ${contador + 1}  dia = ${dias[contador]}   Valor depositado = R$ ${valores[contador]}</span><br>`
+                    
+                }
+
+        total+= valores[contador];
+            }
+
+        }
+
+        mensagem.innerHTML += `Quantidade de dias selecionados: ${(dia_final-dia_inicial)+1},<br>
+         valor total dos depósitos dos dias selecionados: R$${total} <br>
+         e a média do valor dos depósitos dos dias selecionados é : ${total/((dia_final-dia_inicial)+1)}<br>`
+
+
+    }
+
+
+
+</script>

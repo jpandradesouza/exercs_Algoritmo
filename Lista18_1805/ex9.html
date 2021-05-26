@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex9</title>
+</head>
+
+<body>
+    <input type="text" id="inpt_filho_cadastrado" placeholder="Digite o nome de um filho seu:">
+    <br>
+    <br>
+    <button onclick="cadastrar()">Cadastrar</button>
+    <button onclick="atualizar()">Atualizar Família</button>
+    <br>
+    <br>
+    <div id="mensagem"></div>
+
+</body>
+
+</html>
+
+<script>
+
+    var filhos = [];
+
+    function cadastrar() {
+
+        var nao_repitido = true;
+
+        var filhos_cadastrados = inpt_filho_cadastrado.value;
+
+
+        for (contador = 0; contador < filhos.length; contador++) {
+            if (filhos_cadastrados == filhos[contador]) {
+                alert('Não pode mais de 1 filho com o mesmo nome!')
+                nao_repitido = false;
+            }
+
+        }
+
+
+        if (nao_repitido == true) {
+            filhos.push(filhos_cadastrados);
+        }
+    }
+
+    function atualizar() {
+
+        mensagem.innerHTML = "";
+
+        mensagem.innerHTML += `Você tem ${filhos.length} filhos<br>
+        Seu custo mensal será aproximadamente R$${(filhos.length * 3000).toFixed(2)} se colocar eles em escola particular ou R$${(filhos.length * 1500).toFixed(2)} se eles estudarem em escola pública!<br><br>`
+
+        for (contador = 0; contador < filhos.length; contador++) {
+            mensagem.innerHTML += `${contador + 1}º filho(a) – ${filhos[contador]}<br>`
+
+        }
+    }
+
+
+</script>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 11</title>
+</head>
+
+<body>
+    Indique o resultado:
+    <select name="" id="inpt_resultado">
+        <option value="Vitória">Vitória</option>
+        <option value="Empate">Empate</option>
+        <option value="Derrota">Derrota</option>
+    </select>
+    <br>
+    <br>
+    <button onclick="registrar()">Registrar jogo</button>
+    <button onclick="analisar()">Analisar o Campeonato</button>
+    <br>
+    <br>
+    <input type="text" id="inpt_qual_jogo" placeholder="Indique qual jogo que saber resultado:" onkeyup="digitar()">
+    <div id="mensagem"></div>
+
+    <br>
+    <br>
+    <input type="text" id="inpt_jogo_inicial" placeholder="Jogo inicial:">
+    <br>
+    <input type="text" id="inpt_jogo_final" placeholder="Jogo final:">
+    <br>
+    <br>
+    <button onclick="intervalo()">Analisar Intervalo</button>
+    <br>
+    <br>
+    <div id="mensagem_2"></div>
+
+</body>
+
+</html>
+
+<script>
+    resultados = [];
+
+    function registrar() {
+        var resultado_jogo = inpt_resultado.value;
+        resultados.push(resultado_jogo);
+        mensagem.innerHTML = "";
+
+    }
+
+    function analisar() {
+
+
+        var vitorias = 0;
+        var empates = 0;
+        var derrotas = 0;
+        var pesquisa = inpt_resultado.value;
+
+
+
+        mensagem.innerHTML += `Até o jogo ${resultados.length}<br>`
+
+        for (var contador = 0; contador <= resultados.length; contador++) {
+
+            if ("Vitória" == resultados[contador]) {
+                vitorias++;
+            }
+
+            else if ("Empate" == resultados[contador]) {
+                empates++;
+            }
+
+            else if ("Derrota" == resultados[contador]) {
+                derrotas++;
+            }
+        }
+
+
+        mensagem.innerHTML += `O time teve: ${vitorias} vitórias, ${empates} empates, ${derrotas} derrotas<br>
+Pontuação total: ${(3 * vitorias) + (1 * empates) + (0 * derrotas)} pontos<br>
+Aproveitamento: ${((((3 * vitorias) + (1 * empates) + (0 * derrotas)) * 100) / (3 * resultados.length)).toFixed(2)}%<br>`
+
+
+
+    }
+
+    function digitar() {
+        var jogo = inpt_qual_jogo.value;
+
+
+
+
+        if ("Vitória" == resultados[jogo - 1]) {
+            mensagem.innerHTML += `No ${jogo}º jogo o time: Venceu<br>`
+        }
+
+        else if ("Empate" == resultados[jogo - 1]) {
+            mensagem.innerHTML += `No ${jogo}º jogo o time: Empatou<br>`
+        }
+
+        else if ("Derrota" == resultados[jogo - 1]) {
+            mensagem.innerHTML += `No ${jogo}º jogo o time: Perdeu<br>`
+        }
+
+        else {
+            mensagem.innerHTML += `Não foi cadastrado um ${jogo}º jogo<br>`
+
+
+
+        }
+
+
+    }
+
+    function intervalo() {
+
+        var vitorias = 0;
+        var empates = 0;
+        var derrotas = 0;
+        var jogo_inicial = Number(inpt_jogo_inicial.value);
+        var jogo_final = Number(inpt_jogo_final.value);
+
+        mensagem_2.innerHTML = "";
+
+        if (jogo_inicial < 0 || jogo_final > resultados.length) {
+            alert('Insira valores de jogos corretos!')
+        }
+
+        else {
+
+            mensagem_2.innerHTML += `Entre os jogos ${jogo_inicial} e ${jogo_final}<br>`
+
+
+            for (var contador = jogo_inicial; contador <= jogo_final; contador++) {
+
+                if ("Vitória" == resultados[contador]) {
+                    vitorias++;
+                }
+
+                else if ("Empate" == resultados[contador]) {
+                    empates++;
+                }
+
+                else if ("Derrota" == resultados[contador]) {
+                    derrotas++;
+                }
+            }
+
+            var intervalo_jogos_exibir = ((jogo_final - jogo_inicial) + 1);
+
+            var total = (3 * vitorias) + (1 * empates) + (0 * derrotas);
+            mensagem_2.innerHTML += `O time teve: ${vitorias} vitórias, ${empates} empates, ${derrotas} derrotas<br>
+
+        Pontuação total: ${total} pontos <br>`
+
+
+
+            mensagem_2.innerHTML += ` Aproveitamento: ${((total * 100) / (3 * (intervalo_jogos_exibir))).toFixed(2)}%<br>`
+
+        }
+
+    }
+
+
+</script>

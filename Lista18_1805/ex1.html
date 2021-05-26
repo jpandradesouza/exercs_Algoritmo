@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aula40</title>
+</head>
+
+<body>
+
+    <input placeholder="filmes" id="in_filme">
+    <button onclick="cadastrar()">Cadastrar</button>
+    <br>
+    <button onclick="exibir()">Exibir</button>
+
+    <br>
+    <div id="div_result"></div>
+
+</body>
+
+</html>
+<script>
+
+    var filmes = [];
+
+    function cadastrar() {
+        var fav_filme = in_filme.value;
+        filmes.push(fav_filme);
+
+
+    }
+
+    function exibir() {
+        if (filmes.length <= 2) {
+            div_result.innerHTML = `Seu filme favorito é: ${filmes[0]}.<br>
+        Seu 3 filme favorito ainda não existe!
+        Total de filmes cadastrados: ${filmes.length}.`
+        } else {
+            div_result.innerHTML = `Seu filme favorito é: ${filmes[0]}.<br>
+        Seu  3 filme favorito é: ${filmes[2]}.<br>
+        Total de filmes cadastrados: ${filmes.length}.`
+        }
+    }
+
+</script>

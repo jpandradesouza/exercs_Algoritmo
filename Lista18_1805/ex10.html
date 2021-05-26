@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 10</title>
+</head>
+
+<body>
+    <input type="text" id="inpt_linha_onibus_cadastrada" placeholder="Digite a linha de ônibus:">
+    <button onclick="gravar()">Gravar buzão</button>
+    <br>
+    <br>
+    <input type="text" id="inpt_pesquisa_onibus" placeholder="Pesquise a linha de ônibus:">
+    <button onclick="pesquisar()">Pesquisar</button>
+    <br>
+    <br>
+    <div id="mensagem"></div>
+
+</body>
+</html>
+
+<script>
+
+    linhas = [];
+
+    function gravar() {
+
+        var linha_buzao = inpt_linha_onibus_cadastrada.value;
+        linhas.push(linha_buzao);
+        mensagem.innerHTML += `${linha_buzao}<br>`
+
+    }
+
+    function pesquisar() {
+
+        var pesquisa = inpt_pesquisa_onibus.value;
+        var contador_linhas = 0;
+
+        for (contador = 0; contador < linhas.length; contador++) {
+
+            if (pesquisa == linhas[contador]) {
+                contador_linhas++;
+               
+            }
+
+        }
+
+        if (contador_linhas == 0) {
+            mensagem.innerHTML = `Você nunca pegou essa linha!`
+        }
+
+        else {
+
+
+            mensagem.innerHTML += `Você já pegou essa linha ${contador_linhas} vezes, nessa ordem: `
+
+
+            for (contador = 1; contador <= linhas.length; contador++) {
+                if (pesquisa == linhas[contador - 1])
+                    mensagem.innerHTML += ` ,${contador}`
+            }
+
+
+        }
+
+    }
+
+
+
+
+</script>

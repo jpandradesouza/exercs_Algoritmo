@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex6</title>
+</head>
+
+<body>
+
+    <input id="in_num"><br><br>
+    <button onclick="cadastrar()">Cadastrar</button><button onclick="historico()">Historico!</button>
+    <br>
+   
+    <br>
+    <div id="div_result"></div>
+
+</body>
+
+</html>
+<script>
+
+    var vt_num = [];
+
+    function cadastrar(){
+        vt_num.push(Number(in_num.value));
+        in_num.value ='';
+    }
+
+    function historico(){
+        div_result.innerHTML = ``;
+        var ax_menor = vt_num[0];
+        var ax_maior = vt_num[0];
+        var ax_total = 0;
+
+        for(index = 0; index < vt_num.length; index++){
+            div_result.innerHTML += `${index + 1} Numero: ${vt_num[index]}<br>`;
+
+            if(vt_num[index] > ax_maior){
+                ax_maior = vt_num[index];
+            }
+            if(vt_num[index] < ax_menor){
+                ax_menor = vt_num[index];
+            }
+
+            ax_total += vt_num[index];
+        }
+        div_result.innerHTML +=`<br><br><br> Maior: ${ax_maior}`;
+        div_result.innerHTML +=`<br>Menor: ${ax_menor}`;
+        div_result.innerHTML +=`<br>Media: ${ax_total / vt_num.length}`;
+        div_result.innerHTML +=`<br>Total: ${ax_total}`;
+        
+
+
+    }
+
+</script>

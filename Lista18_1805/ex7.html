@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex7</title>
+</head>
+
+<body>
+
+    cadastrar nota:<input id="in_num">
+    <button onclick="cadastrar()">Cadastrar</button><br><br>
+    nota base:<input type="text" id="in_base">
+    <button onclick="rever()">rever!</button>
+    <br>
+    <br>
+    <div id="div_result"></div>
+
+</body>
+
+</html>
+<script>
+
+    var vt_num = [];
+
+
+    function cadastrar() {
+        vt_num.push(Number(in_num.value));
+        in_num.value = '';
+    }
+
+    function rever() {
+        div_result.innerHTML = ``;
+        var acima = 0;
+        var ax_total = 0;
+        var informada = Number(in_base.value);
+
+        for(index = 0; index < vt_num.length; index++) {
+
+            if (vt_num[index] >= informada) {
+                acima++;
+            }
+            ax_total += vt_num[index];
+        }
+        div_result.innerHTML += `Foram cadastras ${acima} notas maiores que ${informada} e a media dessas notas é ${ax_total / vt_num.length}`;
+    }
+</script>

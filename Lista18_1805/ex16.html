@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex16</title>
+</head>
+
+<body>
+
+    <input placeholder="nomes" id="in_cachorro">
+    <button onclick="cadastrar()">Cadastrar</button><button onclick="validar()">Validar!</button>
+    <br>
+
+
+    <br>
+    <div id="div_result"></div>
+
+</body>
+
+</html>
+<script>
+
+    var vt_cachorros = [];
+
+    function cadastrar() {
+        vt_cachorros.push(in_cachorro.value);
+        div_result.innerHTML += `${in_cachorro.value}<br>`;
+
+    }
+
+    function validar() {
+        var nome = in_cachorro.value;
+        var contador_inv = 0;
+        for (var contador = 0; contador < vt_cachorros.length; contador++) {
+
+            var cachorro_atual = vt_cachorros[contador]
+
+            if (cachorro_atual.length < 2) {
+                contador_inv++;
+
+            }
+        }
+        alert(`existem ${contador_inv} nome(s) de cachorro(s) invaldido(s)`);
+        div_result.innerHTML = ``;
+        for (var contador = 0; contador < vt_cachorros.length; contador++) {
+
+            var cachorro_atual = vt_cachorros[contador]
+
+            if (cachorro_atual.length < 2) {
+                div_result.innerHTML += `<span style="color: red;"> ${vt_cachorros[contador]}</span><br>`;
+
+            } else {
+                div_result.innerHTML += `<span style="color: blue;"> ${vt_cachorros[contador]}</span><br>`;
+            }
+        }
+    }
+</script>

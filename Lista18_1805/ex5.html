@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex4</title>
+</head>
+
+<body>
+
+    <input placeholder="nomes" id="in_aluno">
+    <button onclick="cadastrar()">Cadastrar</button><button onclick="pesquisar()">Pesquisar!</button>
+    <br>
+   
+
+    <br>
+    <div id="div_result"></div>
+
+</body>
+
+</html>
+<script>
+
+    var vt_alunos = [];
+
+    function cadastrar() {
+        vt_alunos.push(in_aluno.value);
+        div_result.innerHTML += `${in_aluno.value}<br>`;
+    
+    }
+
+    function pesquisar(){
+        var ax_qtde = 0;
+        for(var index = 0; index < vt_alunos.length; index++){
+          if(vt_alunos[index] == in_aluno.value){
+            ax_qtde++;
+            
+          } 
+        }
+        if(ax_qtde == 0){
+            alert(`O aluno ${in_aluno.value} não existe na lista`)
+        }else{
+            alert(`O aluno ${in_aluno.value} aparece ${ax_qtde} vezes na lista`)
+        }
+             
+    }
+
+    
+
+</script>

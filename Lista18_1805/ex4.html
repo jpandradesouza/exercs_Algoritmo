@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex4</title>
+</head>
+
+<body>
+
+    <input placeholder="nomes" id="in_nome">
+    <button onclick="cadastrar()">Cadastrar</button>
+    <br>
+   
+
+    <br>
+    <div id="div_result"></div>
+
+</body>
+
+</html>
+<script>
+
+    var nomes = [];
+
+    function cadastrar() {
+        div_result.innerHTML = '';
+        nomes.push(in_nome.value);
+
+        for(contador = nomes.length-1;contador >= 0; contador--){
+            div_result.innerHTML += `${nomes[contador]}<br>`;  
+        }
+
+    }
+
+</script>
